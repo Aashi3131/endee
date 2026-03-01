@@ -12,10 +12,14 @@ DIMENSION = 384  # all-MiniLM-L6-v2 outputs 384-dim vectors
 
 def create_index():
     url = f"{BASE_URL}/api/v1/index/create"
+
     payload = {
-        "index_name": INDEX_NAME,
-        "dimension": DIMENSION
+        "name": INDEX_NAME,
+        "dimension": DIMENSION,
+        "space_type": "cosine",
+        "precision": "float16"
     }
+
     response = requests.post(url, json=payload)
     print("Create Index:", response.text)
 
